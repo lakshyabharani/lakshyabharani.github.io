@@ -30,8 +30,11 @@
   .container { max-width: 920px; margin: 0 auto; }
   #hero { min-height: calc(100vh - 56px); display: flex; align-items: center; border-bottom: 1px solid var(--border); }
   .hero-inner { max-width: 920px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
-  .hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+  .hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; min-height: 20px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); flex-shrink: 0; }
+  .role-text { border-right: 2px solid var(--accent); padding-right: 4px; }
+  @keyframes blink { 0%,100%{border-color:var(--accent)} 50%{border-color:transparent} }
+  .role-text { animation: blink 0.8s step-end infinite; }
   h1 { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 64px); line-height: 1.05; letter-spacing: -1px; color: var(--ink); margin-bottom: 20px; }
   h1 em { color: var(--accent); font-style: italic; }
   .hero-desc { font-size: 16px; color: var(--ink2); line-height: 1.75; max-width: 480px; margin-bottom: 36px; }
@@ -43,7 +46,6 @@
   .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
   .hero-location { font-size: 13px; color: var(--ink3); }
   .hero-right { display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; align-items: center; }
-  .avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 32px; color: var(--accent); margin-bottom: 4px; }
   .badge-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; width: 160px; text-align: center; }
   .badge-card .b-num { font-family: var(--serif); font-size: 26px; color: var(--accent); line-height: 1; margin-bottom: 4px; }
   .badge-card .b-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink3); }
@@ -116,7 +118,7 @@
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <p class="hero-eyebrow">Full Stack Developer</p>
+      <p class="hero-eyebrow"><span class="role-text" id="role">Full Stack Developer</span></p>
       <h1>I build things<br>that <em>actually work.</em></h1>
       <p class="hero-desc">I started as a junior dev in Chennai, moved across the world to pursue a Master's in the US, and kept building the whole way through. Today I work on backend systems and data integrations at Cardinality.ai — migrating millions of records, designing APIs, and making complex systems talk to each other. I care about writing clean, reliable code that holds up in production.</p>
       <div class="hero-cta">
@@ -126,7 +128,7 @@
       <p class="hero-location">📍 Maryland, USA &nbsp;·&nbsp; Open to relocation</p>
     </div>
     <div class="hero-right">
-      <div class="badge-card"><div class="b-num">3+</div><div class="b-label">Years experience</div></div>
+      <div class="badge-card"><div class="b-num">5+</div><div class="b-label">Years experience</div></div>
       <div class="badge-card"><div class="b-num">~1M</div><div class="b-label">Records migrated</div></div>
       <div class="badge-card"><div class="b-num">AWS</div><div class="b-label">Certified Dev</div></div>
     </div>
@@ -148,13 +150,8 @@
 <section id="experience">
   <div class="container">
     <p class="section-label">Experience</p>
-
     <div class="exp-item">
-      <div class="exp-meta">
-        <p class="company">Cardinality.ai</p>
-        <p class="period">Nov 2025 – Present</p>
-        <p class="location">Gaithersburg, MD</p>
-      </div>
+      <div class="exp-meta"><p class="company">Cardinality.ai</p><p class="period">Nov 2025 – Present</p><p class="location">Gaithersburg, MD</p></div>
       <div class="exp-content">
         <p class="role">Analyst, Technology & Integration</p>
         <ul>
@@ -166,13 +163,8 @@
         </ul>
       </div>
     </div>
-
     <div class="exp-item">
-      <div class="exp-meta">
-        <p class="company">Cardinality.ai</p>
-        <p class="period">Feb 2025 – Nov 2025</p>
-        <p class="location">Gaithersburg, MD</p>
-      </div>
+      <div class="exp-meta"><p class="company">Cardinality.ai</p><p class="period">Feb 2025 – Nov 2025</p><p class="location">Gaithersburg, MD</p></div>
       <div class="exp-content">
         <p class="role">Software Developer Intern</p>
         <ul>
@@ -183,13 +175,8 @@
         </ul>
       </div>
     </div>
-
     <div class="exp-item">
-      <div class="exp-meta">
-        <p class="company">Particle Black</p>
-        <p class="period">Sep 2021 – May 2023</p>
-        <p class="location">Chennai, India</p>
-      </div>
+      <div class="exp-meta"><p class="company">Particle Black</p><p class="period">Sep 2021 – May 2023</p><p class="location">Chennai, India</p></div>
       <div class="exp-content">
         <p class="role">Junior Software Developer</p>
         <ul>
@@ -200,13 +187,8 @@
         </ul>
       </div>
     </div>
-
     <div class="exp-item">
-      <div class="exp-meta">
-        <p class="company">Elixir Softlab</p>
-        <p class="period">Jun 2021 – Aug 2021</p>
-        <p class="location">Chennai, India</p>
-      </div>
+      <div class="exp-meta"><p class="company">Elixir Softlab</p><p class="period">Jun 2021 – Aug 2021</p><p class="location">Chennai, India</p></div>
       <div class="exp-content">
         <p class="role">Software Developer Intern</p>
         <ul>
@@ -216,13 +198,8 @@
         </ul>
       </div>
     </div>
-
     <div class="exp-item">
-      <div class="exp-meta">
-        <p class="company">Elixir Softlab</p>
-        <p class="period">Jun 2019 – Jul 2019</p>
-        <p class="location">Chennai, India</p>
-      </div>
+      <div class="exp-meta"><p class="company">Elixir Softlab</p><p class="period">Jun 2019 – Jul 2019</p><p class="location">Chennai, India</p></div>
       <div class="exp-content">
         <p class="role">Product Development Intern</p>
         <ul>
@@ -232,7 +209,6 @@
         </ul>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -292,6 +268,41 @@
 </main>
 
 <footer>© 2026 Lakshya Bharani · Built with purpose, shipped with patience.</footer>
+
+<script>
+  const roles = [
+    "Full Stack Developer",
+    "Software Engineer",
+    "Backend Developer"
+  ];
+  const el = document.getElementById("role");
+  let roleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  function type() {
+    const current = roles[roleIndex];
+    if (deleting) {
+      el.textContent = current.substring(0, charIndex--);
+      if (charIndex < 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type, 400);
+        return;
+      }
+      setTimeout(type, 40);
+    } else {
+      el.textContent = current.substring(0, charIndex++);
+      if (charIndex > current.length) {
+        setTimeout(() => { deleting = true; type(); }, 2000);
+        return;
+      }
+      setTimeout(type, 80);
+    }
+  }
+
+  type();
+</script>
 
 </body>
 </html>

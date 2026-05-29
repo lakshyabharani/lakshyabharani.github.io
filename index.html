@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshya Bharani — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0F0F0E; --bg2: #161614; --bg3: #1E1E1B;
+    --ink: #F0EDE6; --ink2: #A09D96; --ink3: #5C5A55;
+    --accent: #C8A96E; --accent2: #2D3D2A; --accent-text: #8FB878;
+    --border: rgba(240,237,230,0.08); --border2: rgba(240,237,230,0.14);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(15,15,14,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5vw; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--serif); font-size: 18px; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--ink2); text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-status { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--accent-text); }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-text); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  main { padding-top: 56px; }
+  section { padding: 80px 5vw; }
+  .container { max-width: 920px; margin: 0 auto; }
+  #hero { min-height: calc(100vh - 56px); display: flex; align-items: center; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 920px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+  .hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+  h1 { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 64px); line-height: 1.05; letter-spacing: -1px; color: var(--ink); margin-bottom: 20px; }
+  h1 em { color: var(--accent); font-style: italic; }
+  .hero-desc { font-size: 16px; color: var(--ink2); line-height: 1.75; max-width: 480px; margin-bottom: 36px; }
+  .hero-desc strong { color: var(--ink); font-weight: 500; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #0F0F0E; padding: 12px 24px; border-radius: 4px; font-size: 14px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--ink); padding: 12px 24px; border-radius: 4px; font-size: 14px; text-decoration: none; border: 1px solid var(--border2); transition: border-color 0.2s, color 0.2s; }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-location { font-size: 13px; color: var(--ink3); }
+  .hero-right { display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; align-items: center; }
+  .avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 32px; color: var(--accent); margin-bottom: 4px; }
+  .badge-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; width: 160px; text-align: center; }
+  .badge-card .b-num { font-family: var(--serif); font-size: 26px; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+  .badge-card .b-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink3); }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink3); margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  #skills { background: var(--bg2); border-bottom: 1px solid var(--border); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .skill-cell { background: var(--bg2); padding: 24px; }
+  .skill-cell-title { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 12px; padding: 4px 10px; background: var(--bg3); color: var(--ink2); border-radius: 3px; border: 1px solid var(--border); }
+  #experience { border-bottom: 1px solid var(--border); }
+  .exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 40px; padding: 40px 0; border-bottom: 1px solid var(--border); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-meta .company { font-weight: 500; color: var(--ink); margin-bottom: 4px; font-size: 14px; }
+  .exp-meta .period, .exp-meta .location { font-size: 12px; color: var(--ink3); margin-bottom: 4px; }
+  .exp-content .role { font-family: var(--serif); font-size: 20px; line-height: 1.2; margin-bottom: 12px; color: var(--ink); }
+  .exp-content ul { list-style: none; padding: 0; }
+  .exp-content ul li { font-size: 14px; color: var(--ink2); padding: 5px 0 5px 16px; position: relative; line-height: 1.6; }
+  .exp-content ul li::before { content: '—'; position: absolute; left: 0; color: var(--ink3); font-size: 12px; top: 6px; }
+  .highlight { color: var(--accent); font-weight: 500; }
+  #projects { background: var(--bg2); border-bottom: 1px solid var(--border); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .project-card { border: 1px solid var(--border); border-radius: 8px; padding: 28px; background: var(--bg3); transition: border-color 0.2s; position: relative; }
+  .project-card:hover { border-color: var(--accent); }
+  .project-card.featured { border-color: var(--accent); }
+  .featured-badge { position: absolute; top: -1px; right: 20px; font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; background: var(--accent); color: #0F0F0E; padding: 3px 10px; border-radius: 0 0 4px 4px; }
+  .project-tag { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-text); background: var(--accent2); padding: 3px 8px; border-radius: 3px; margin-bottom: 14px; }
+  .project-card h3 { font-family: var(--serif); font-size: 18px; line-height: 1.25; margin-bottom: 10px; color: var(--ink); }
+  .project-card p { font-size: 13px; color: var(--ink2); line-height: 1.6; margin-bottom: 16px; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .stack-pill { font-size: 11px; padding: 3px 8px; border: 1px solid var(--border2); border-radius: 3px; color: var(--ink3); }
+  .project-link { font-size: 12px; color: var(--accent); text-decoration: none; }
+  .project-link:hover { opacity: 0.8; }
+  #certifications { border-bottom: 1px solid var(--border); }
+  .cert-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .cert-item { display: flex; align-items: flex-start; gap: 14px; padding: 18px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; }
+  .cert-icon { width: 36px; height: 36px; border-radius: 6px; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 500; color: var(--accent); }
+  .cert-name { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; margin-bottom: 3px; }
+  .cert-issuer { font-size: 11px; color: var(--ink3); }
+  #contact { text-align: center; background: var(--bg2); }
+  .contact-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  #contact h2 { font-family: var(--serif); font-size: clamp(32px, 5vw, 52px); line-height: 1.1; margin-bottom: 16px; }
+  #contact h2 em { color: var(--accent); }
+  #contact .sub { color: var(--ink2); font-size: 15px; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  footer { padding: 24px 5vw; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--ink3); }
+  @media (max-width: 640px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-right { flex-direction: row; overflow-x: auto; }
+    .exp-item { grid-template-columns: 1fr; gap: 12px; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">LB</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status"><div class="status-dot"></div> Open to opportunities</div>
+</nav>
+
+<main>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Full Stack Developer</p>
+      <h1>I build things<br>that <em>actually work.</em></h1>
+      <p class="hero-desc">I started as a junior dev in Chennai, moved across the world to pursue a Master's in the US, and kept building the whole way through. Today I work on backend systems and data integrations at Cardinality.ai — migrating millions of records, designing APIs, and making complex systems talk to each other. I care about writing clean, reliable code that holds up in production.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">See my work</a>
+        <a href="#contact" class="btn-secondary">Get in touch</a>
+      </div>
+      <p class="hero-location">📍 Maryland, USA &nbsp;·&nbsp; Open to relocation</p>
+    </div>
+    <div class="hero-right">
+      <div class="avatar">LB</div>
+      <div class="badge-card"><div class="b-num">3+</div><div class="b-label">Years experience</div></div>
+      <div class="badge-card"><div class="b-num">~1M</div><div class="b-label">Records migrated</div></div>
+      <div class="badge-card"><div class="b-num">AWS</div><div class="b-label">Certified Dev</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Technical skills</p>
+    <div class="skills-grid">
+      <div class="skill-cell"><p class="skill-cell-title">Languages</p><div class="skill-tags"><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">SQL</span></div></div>
+      <div class="skill-cell"><p class="skill-cell-title">Backend & APIs</p><div class="skill-tags"><span class="tag">NestJS</span><span class="tag">Node.js</span><span class="tag">REST APIs</span><span class="tag">TypeORM</span><span class="tag">MuleSoft</span></div></div>
+      <div class="skill-cell"><p class="skill-cell-title">Databases</p><div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MS SQL</span><span class="tag">MongoDB</span></div></div>
+      <div class="skill-cell"><p class="skill-cell-title">Cloud & Tools</p><div class="skill-tags"><span class="tag">AWS EC2</span><span class="tag">AWS S3</span><span class="tag">AWS Cognito</span><span class="tag">Docker</span><span class="tag">n8n</span><span class="tag">Talend</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Experience</p>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="company">Cardinality.ai</p>
+        <p class="period">Nov 2025 – Present</p>
+        <p class="location">Gaithersburg, MD</p>
+      </div>
+      <div class="exp-content">
+        <p class="role">Analyst, Technology & Integration</p>
+        <ul>
+          <li>Build and maintain RESTful APIs using NestJS to support data processing and cross-system integration</li>
+          <li>Execute end-to-end API testing by designing test cases to ensure quality and seamless service integration</li>
+          <li>Translate business requirements into technical documentation to enable efficient development cycles</li>
+          <li>Write AQL queries for data validation, resolving client-reported data inconsistencies</li>
+          <li>Lead client calls to gather requirements, track integration progress, and communicate technical status</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="company">Cardinality.ai</p>
+        <p class="period">Feb 2025 – Nov 2025</p>
+        <p class="location">Gaithersburg, MD</p>
+      </div>
+      <div class="exp-content">
+        <p class="role">Software Developer Intern</p>
+        <ul>
+          <li>Independently executed a large-scale data migration of <span class="highlight">~1M records</span> using Power Query and Talend, achieving a <span class="highlight">70% reduction</span> in data errors</li>
+          <li>Automated data workflows using n8n, reducing manual effort by <span class="highlight">30%</span></li>
+          <li>Built APIs in NestJS and customized dynamic form elements with AngularJS to improve UI/UX</li>
+          <li>Optimized SQL queries to extract and analyze large datasets, improving reporting efficiency by <span class="highlight">50%</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="company">Particle Black</p>
+        <p class="period">Sep 2021 – May 2023</p>
+        <p class="location">Chennai, India</p>
+      </div>
+      <div class="exp-content">
+        <p class="role">Junior Software Developer</p>
+        <ul>
+          <li>Designed and developed backend services and API components using Node.js for seamless system integration</li>
+          <li>Optimized SQL queries achieving a <span class="highlight">60% improvement</span> in database performance</li>
+          <li>Diagnosed and resolved software bugs via system log analysis, contributing to <span class="highlight">99% application uptime</span></li>
+          <li>Collaborated with cross-functional teams in Agile sprints to deliver production-ready features</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="company">Elixir Softlab</p>
+        <p class="period">Jun 2021 – Aug 2021</p>
+        <p class="location">Chennai, India</p>
+      </div>
+      <div class="exp-content">
+        <p class="role">Software Developer Intern</p>
+        <ul>
+          <li>Developed APIs using Node.js and tested reliability using Postman</li>
+          <li>Optimized SQL queries achieving a 20% improvement in database performance</li>
+          <li>Built API integrations using MuleSoft, including data mapping, transformation, and connectivity</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="company">Elixir Softlab</p>
+        <p class="period">Jun 2019 – Jul 2019</p>
+        <p class="location">Chennai, India</p>
+      </div>
+      <div class="exp-content">
+        <p class="role">Product Development Intern</p>
+        <ul>
+          <li>Gained hands-on exposure to the software product development lifecycle, from requirements gathering through testing and deployment</li>
+          <li>Optimized PostgreSQL stored procedures to improve data access performance and integrity</li>
+          <li>Streamlined development workflows using Visual Studio Code and pgAdmin</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <div class="projects-grid">
+      <div class="project-card featured">
+        <span class="featured-badge">Featured</span>
+        <span class="project-tag">Backend API</span>
+        <h3>Task Manager API</h3>
+        <p>A production-ready REST API with JWT authentication, role-based access control, and full task CRUD. Built with NestJS, PostgreSQL, and Docker.</p>
+        <div class="project-stack"><span class="stack-pill">NestJS</span><span class="stack-pill">TypeScript</span><span class="stack-pill">PostgreSQL</span><span class="stack-pill">JWT</span><span class="stack-pill">Docker</span></div>
+        <a href="https://github.com/lakshyabharani/task-manager-api" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card">
+        <span class="project-tag">ML / Backend</span>
+        <h3>Human Signature Verification</h3>
+        <p>Machine learning fraud detection system using a CNN trained with TensorFlow and Keras. Led team development from model training through deployment.</p>
+        <div class="project-stack"><span class="stack-pill">Python</span><span class="stack-pill">TensorFlow</span><span class="stack-pill">Keras</span><span class="stack-pill">Django</span></div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag">Data & Analytics</span>
+        <h3>AI-Driven Data Analytics</h3>
+        <p>Leveraged Generative AI with Python and Excel to perform advanced statistical analysis and built interactive Tableau dashboards using LOD calculations.</p>
+        <div class="project-stack"><span class="stack-pill">Python</span><span class="stack-pill">Tableau</span><span class="stack-pill">Excel</span><span class="stack-pill">Gen AI</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">Certifications</p>
+    <div class="cert-list">
+      <div class="cert-item"><div class="cert-icon">AWS</div><div><p class="cert-name">AWS Certified Developer – Associate</p><p class="cert-issuer">Amazon Web Services · Sep 2025</p></div></div>
+      <div class="cert-item"><div class="cert-icon">JS</div><div><p class="cert-name">JavaScript Foundations Professional Certificate</p><p class="cert-issuer">Mozilla via LinkedIn Learning · Mar 2025</p></div></div>
+      <div class="cert-item"><div class="cert-icon">GCP</div><div><p class="cert-name">Google Developer Essentials</p><p class="cert-issuer">Google Cloud Skills Boost · Mar 2025</p></div></div>
+      <div class="cert-item"><div class="cert-icon">AI</div><div><p class="cert-name">Prompt Design in Vertex AI</p><p class="cert-issuer">Google Cloud Skills Boost · Jan 2025</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <p class="contact-eyebrow">Get in touch</p>
+    <h2>Let's build something<br><em>worth building.</em></h2>
+    <p class="sub">Currently employed at Cardinality.ai and open to the right opportunities. Based in Maryland, open to relocation. Always happy to talk shop.</p>
+    <div class="contact-links">
+      <a href="mailto:lakshyabharani@gmail.com" class="btn-primary">lakshyabharani@gmail.com</a>
+      <a href="https://www.linkedin.com/in/lakshya-bharani" target="_blank" class="btn-secondary">LinkedIn</a>
+      <a href="https://github.com/lakshyabharani" target="_blank" class="btn-secondary">GitHub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>© 2026 Lakshya Bharani · Built with purpose, shipped with patience.</footer>
+
+</body>
+</html>

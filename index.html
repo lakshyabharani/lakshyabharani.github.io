@@ -128,8 +128,8 @@
       <p class="hero-location">📍 Maryland, USA &nbsp;·&nbsp; Open to relocation</p>
     </div>
     <div class="hero-right">
-      <div class="badge-card"><div class="b-num">5+</div><div class="b-label">Years experience</div></div>
-      <div class="badge-card"><div class="b-num">~1M</div><div class="b-label">Records migrated</div></div>
+      <div class="badge-card"><div class="b-num">4+</div><div class="b-label">Years experience</div></div>
+      <div class="badge-card"><div class="b-num">~10M</div><div class="b-label">Records migrated</div></div>
       <div class="badge-card"><div class="b-num">AWS</div><div class="b-label">Certified Dev</div></div>
     </div>
   </div>
@@ -168,7 +168,7 @@
       <div class="exp-content">
         <p class="role">Software Developer Intern</p>
         <ul>
-          <li>Independently executed a large-scale data migration of <span class="highlight">~1M records</span> using Power Query and Talend, achieving a <span class="highlight">70% reduction</span> in data errors</li>
+          <li>Independently executed a large-scale data migration of <span class="highlight">~10M records</span> using Power Query and Talend, achieving a <span class="highlight">70% reduction</span> in data errors</li>
           <li>Automated data workflows using n8n, reducing manual effort by <span class="highlight">30%</span></li>
           <li>Built APIs in NestJS and customized dynamic form elements with AngularJS to improve UI/UX</li>
           <li>Optimized SQL queries to extract and analyze large datasets, improving reporting efficiency by <span class="highlight">50%</span></li>
@@ -218,6 +218,13 @@
     <div class="projects-grid">
       <div class="project-card featured">
         <span class="featured-badge">Featured</span>
+        <span class="project-tag">Healthcare API</span>
+        <h3>Epic FHIR Patient API</h3>
+        <p>A NestJS backend that authenticates with Epic's FHIR R4 sandbox via OAuth 2.0 + PKCE and queries patient health data — demographics, vital signs, conditions, encounters, and allergies. Built to demonstrate healthcare IT interoperability skills directly relevant to EHR integration work.</p>
+        <div class="project-stack"><span class="stack-pill">NestJS</span><span class="stack-pill">TypeScript</span><span class="stack-pill">Epic FHIR R4</span><span class="stack-pill">OAuth 2.0</span><span class="stack-pill">PKCE</span></div>
+        <a href="https://github.com/lakshyabharani/epic-fhir-patient-api" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card">
         <span class="project-tag">Backend API</span>
         <h3>Task Manager API</h3>
         <p>A production-ready REST API with JWT authentication, role-based access control, and full task CRUD. Built with NestJS, PostgreSQL, and Docker.</p>
@@ -273,7 +280,8 @@
   const roles = [
     "Full Stack Developer",
     "Software Engineer",
-    "Backend Developer"
+    "Backend Developer",
+    "Integration Engineer"
   ];
   const el = document.getElementById("role");
   let roleIndex = 0;
